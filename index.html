@@ -191,7 +191,7 @@ if (navigator.geolocation){//如果getCurrentPosition()运行成功， //则向�
 function showPosition(position){  //showPosition() 函数获得并显示经度和纬度
     let address = position.coords.longitude+','+position.coords.latitude;
     var xhr = new XMLHttpRequest();
-    xhr.open('get','http://120.79.205.154:8089/stage-api/external/addTest'+'?'+'value='+address);
+    xhr.open('get','https://digitaltest.crecrainbowhouse.com:20203/api/app/ann/addTest'+'?'+'value='+address);
     
     xhr.send();
     xhr.onreadystatechange = function () {
