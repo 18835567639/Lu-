@@ -181,13 +181,24 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     }
 </script> -->
 <script>
+  
 
-　　if (navigator.geolocation){//如果getCurrentPosition()运行成功， //则向参数showPosition中规定的函数返回一个coordinates对象
-　　　　navigator.geolocation.getCurrentPosition(showPosition);
-　　}
+if (navigator.geolocation){//如果getCurrentPosition()运行成功， //则向参数showPosition中规定的函数返回一个coordinates对象
+　　navigator.geolocation.getCurrentPosition(showPosition);
+}
 
 
 function showPosition(position){  //showPosition() 函数获得并显示经度和纬度
-document.querySelector('.jingweidu').innerHTML="纬度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
+    let address = position.coords.longitude+','+position.coords.latitude;
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','http://120.79.205.154:8089/stage-api/external/addTest'+'?'+'value='+address);
+    
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        // 这步为判断服务器是否正确响应
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr);
+    }
+    };
 }
 </script>
